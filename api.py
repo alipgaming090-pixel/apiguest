@@ -46,14 +46,14 @@ def generate_account(name, region):
 
     uid = randint(100000000, 999999999)
 
-    password = random.choice(PASSWORDS)
+    password = "LIPZX"
 
     return {
         "uid": uid,
         "account_id": account_id,
         "password": password,
         "region": region,
-        "nickname": f"{name}{randint(10,999)}"
+        "nickname": name
     }
 
 
