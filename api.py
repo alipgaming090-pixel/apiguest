@@ -58,14 +58,30 @@ def generate_account(name, region):
 
 
 @app.get("/gen")
-async def generate(name: str = "Guest", count: int = 1, region: str = "ID"):
-
-    if count > 15:
-        count = 15
+async def generate(
+    name: str,
+    count: int = 10,
+    region: str = "ID"
+):
 
     results = []
 
     for _ in range(count):
-        results.append(generate_account(name, region))
 
-    return results
+        uid = random.randint(100000000, 999999999)
+
+        acc_id = str(random.randint(1000000000, 9999999999))
+
+        results.append({
+            "uid": uid,
+            "account_id": acc_id,
+            "password": "LIPZX",
+            "region": region,
+            "nickname": name
+        })
+
+    return {
+        "success": True,
+        "count": len(results),
+        "accounts": results
+    }
